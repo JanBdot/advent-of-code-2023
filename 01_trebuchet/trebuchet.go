@@ -1,13 +1,14 @@
-package main
+package trebuchet
 
 import (
-	"adc/util"
 	"bufio"
 	"fmt"
 	"log"
 	"strconv"
 	"strings"
 	"unicode"
+
+	"github.com/JanBdot/advent-of-code-2023/util"
 )
 
 func ExtractDigits(s *string) {
@@ -62,8 +63,8 @@ func ConvertWrittenDigits(s *string) {
 	*s = result.String()
 }
 
-func main() {
-	file, err := util.ReadFile("input")
+func Trebuchet() int {
+	file, err := util.ReadFile("./01_trebuchet/input")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -91,5 +92,5 @@ func main() {
 		panic(err)
 	}
 
-	log.Println(sum)
+	return sum
 }
