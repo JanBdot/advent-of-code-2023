@@ -11,6 +11,41 @@ import (
 	"github.com/JanBdot/advent-of-code-2023/util"
 )
 
+func Trebuchet() (int, int) {
+	return 0, round2()
+}
+
+func round2() int {
+	file, err := util.ReadFile("./01_trebuchet/input")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	var sum int = 0
+	for scanner.Scan() {
+		var text = strings.ToUpper(scanner.Text())
+
+		ConvertWrittenDigits(&text)
+		ExtractDigits(&text)
+		ExtractFirstAndLastDigit(&text)
+		add, err := strconv.Atoi(text)
+		if err != nil {
+			panic(err)
+		}
+
+		sum += add
+	}
+
+	// Check for any errors that occurred during scanning
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+
+	return sum
+}
+
 func ExtractDigits(s *string) {
 	var digits string
 	for _, c := range *s {
@@ -61,36 +96,4 @@ func ConvertWrittenDigits(s *string) {
 	}
 
 	*s = result.String()
-}
-
-func Trebuchet() int {
-	file, err := util.ReadFile("./01_trebuchet/input")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	var sum int = 0
-	for scanner.Scan() {
-		// loops each line
-		var text = strings.ToUpper(scanner.Text())
-
-		ConvertWrittenDigits(&text)
-		ExtractDigits(&text)
-		ExtractFirstAndLastDigit(&text)
-		add, err := strconv.Atoi(text)
-		if err != nil {
-			panic(err)
-		}
-
-		sum += add
-	}
-
-	// Check for any errors that occurred during scanning
-	if err := scanner.Err(); err != nil {
-		panic(err)
-	}
-
-	return sum
 }

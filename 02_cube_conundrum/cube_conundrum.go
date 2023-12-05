@@ -21,7 +21,48 @@ type Round struct {
 	Draws []map[string]int
 }
 
-func CubeConundrum() int {
+func CubeConundrum() (int, int) {
+	return round1(), round2()
+}
+
+func round2() int {
+	file, err := util.ReadFile("./02_cube_conundrum/input")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+	var rounds []Round
+	for scanner.Scan() {
+		rounds = append(rounds, MapInputToRound(scanner.Text()))
+	}
+	sum := 0
+	for _, round := range rounds {
+		sum += CalculatePowerOfSet(round)
+	}
+	return sum
+}
+
+func CalculatePowerOfSet(round Round) int {
+	var highestAmount = map[string]int{
+		"red":   1,
+		"green": 1,
+		"blue":  1,
+	}
+
+	for _, draw := range round.Draws {
+		for color, amount := range draw {
+			if highestAmount[color] < amount {
+				highestAmount[color] = amount
+			}
+		}
+	}
+
+	return highestAmount["red"] * highestAmount["green"] * highestAmount["blue"]
+}
+
+func round1() int {
 	file, err := util.ReadFile("./02_cube_conundrum/input")
 	if err != nil {
 		panic(err)

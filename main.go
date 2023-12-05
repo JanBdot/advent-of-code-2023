@@ -8,8 +8,11 @@ import (
 )
 
 func main() {
+	var round1, round2 int
 	fmt.Println("Advent of Code 2023 by Jan Baer")
-	fmt.Printf("\tDay 01 solution: \t%v\n", trebuchet.Trebuchet())
-	fmt.Printf("\tDay 02 solution: \t%v\n", cubeconundrum.CubeConundrum())
+	round1, round2 = trebuchet.Trebuchet()
+	fmt.Printf("Day 01:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
+	round1, round2 = cubeconundrum.CubeConundrum()
+	fmt.Printf("Day 02:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
 
 }
