@@ -63,7 +63,28 @@ func initSeedList() {
 }
 
 func round2() int {
-	return 0
+
+	locations := make([]int, 0)
+	for i := 0; i < len(seedList); i += 2 {
+		startSeed := seedList[i]
+		seedRange := seedList[i+1]
+		tmpLocations := make([]int, 0)
+		// bruteforce attempt (takes a long time)
+		for seed := startSeed; seed < startSeed+seedRange; seed++ {
+			tmpDest := seed
+			getDestination("seed-to-soil", &tmpDest)
+			getDestination("soil-to-fertilizer", &tmpDest)
+			getDestination("fertilizer-to-water", &tmpDest)
+			getDestination("water-to-light", &tmpDest)
+			getDestination("light-to-temperature", &tmpDest)
+			getDestination("temperature-to-humidity", &tmpDest)
+			getDestination("humidity-to-location", &tmpDest)
+			tmpLocations = append(tmpLocations, tmpDest)
+		}
+		locations = append(locations, slices.Min(tmpLocations))
+	}
+
+	return slices.Min(locations)
 }
 
 func round1() int {
@@ -83,7 +104,7 @@ func round1() int {
 	return slices.Min(locations)
 }
 
-func getDestination(s string, tmpSource *int) int {
+func getDestination(s string, tmpSource *int) {
 	finalDestination := *tmpSource
 	for _, mapLines := range maps[s] {
 		destination := mapLines[0]
@@ -94,5 +115,5 @@ func getDestination(s string, tmpSource *int) int {
 			finalDestination = *tmpSource + destination - source
 		}
 	}
-	return finalDestination
+	*tmpSource = finalDestination
 }
