@@ -26,7 +26,10 @@ func Race() (int, int) {
 }
 
 func round2() int {
-	return 0
+	time := getIntFromString(fileAsSlice[0], ":")
+	distance := getIntFromString(fileAsSlice[1], ":")
+
+	return len(findBeatingPossiblities(time, distance))
 }
 
 func round1() int {
@@ -66,4 +69,14 @@ func getIntSliceFromString(s string, sep string) []int {
 		values[i] = v
 	}
 	return values
+}
+
+func getIntFromString(s string, sep string) int {
+	_, valueAsString, _ := strings.Cut(s, sep)
+	valueAsString = strings.ReplaceAll(valueAsString, " ", "")
+	v, err := strconv.Atoi(valueAsString)
+	if err != nil {
+		panic(err)
+	}
+	return v
 }
