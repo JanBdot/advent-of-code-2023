@@ -7,6 +7,7 @@ import (
 	cubeconundrum "github.com/JanBdot/advent-of-code-2023/02_cube_conundrum"
 	gear_ratios "github.com/JanBdot/advent-of-code-2023/03_gear_ratios"
 	scratchcards "github.com/JanBdot/advent-of-code-2023/04_scratchcards"
+	seed "github.com/JanBdot/advent-of-code-2023/05_seed"
 )
 
 func main() {
@@ -20,5 +21,6 @@ func main() {
 	fmt.Printf("Day 03:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
 	round1, round2 = scratchcards.Scratchcards()
 	fmt.Printf("Day 04:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
-
+	round1, round2 = seed.Seed()
+	fmt.Printf("Day 05:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
 }

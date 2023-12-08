@@ -10,6 +10,8 @@ import (
 )
 
 var scratchcards []string
+var scoresPerLine []int
+var cardsAmount []int
 
 func Scratchcards() (int, int) {
 	file, err := util.ReadFile("./04_scratchcards/input")
@@ -27,7 +29,21 @@ func Scratchcards() (int, int) {
 }
 
 func round2() int {
-	return 0
+	for i, score := range scoresPerLine {
+		if score > 0 {
+			for j := 0; j < score; j++ {
+				// cap to end of scoresPerLine
+				index := int(math.Min(float64(i+j+1), float64(len(scoresPerLine)-1)))
+				// Add the copies of the current line card to the amount
+				cardsAmount[index] += cardsAmount[i]
+			}
+		}
+	}
+	sum := 0
+	for _, amount := range cardsAmount {
+		sum += amount
+	}
+	return sum
 }
 
 func round1() int {
@@ -38,6 +54,8 @@ func round1() int {
 		if len(correctNumbers) > 0 {
 			sum += int(math.Pow(2, float64(len(correctNumbers)-1)))
 		}
+		scoresPerLine = append(scoresPerLine, len(correctNumbers))
+		cardsAmount = append(cardsAmount, 1)
 	}
 	return sum
 }
