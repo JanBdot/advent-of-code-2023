@@ -3,7 +3,6 @@ package scratchcards
 import (
 	"bufio"
 	"math"
-	"strconv"
 	"strings"
 
 	"github.com/JanBdot/advent-of-code-2023/util"
@@ -63,22 +62,9 @@ func round1() int {
 func ExtractNumbersFromScratchcard(line string) ([]int, []int) {
 	_, numbers, _ := strings.Cut(line, ":")
 	drawnNumbersString, winningNumbersString, _ := strings.Cut(numbers, "|")
-	drawnNumbers := ConvertStringToIntSlice(strings.TrimSpace(drawnNumbersString))
-	winningNumbers := ConvertStringToIntSlice(strings.TrimSpace(winningNumbersString))
+	drawnNumbers := util.ConvertStringToIntSlice(strings.TrimSpace(drawnNumbersString))
+	winningNumbers := util.ConvertStringToIntSlice(strings.TrimSpace(winningNumbersString))
 	return drawnNumbers, winningNumbers
-}
-
-func ConvertStringToIntSlice(numbersString string) []int {
-	var intSlice = make([]int, 0)
-	stringSlice := strings.Fields(numbersString)
-	for _, numberString := range stringSlice {
-		number, err := strconv.Atoi(string(numberString))
-		if err != nil {
-			panic(err)
-		}
-		intSlice = append(intSlice, number)
-	}
-	return intSlice
 }
 
 func FindWinningNumbers(drawnNumbers, winningNumbers []int) []int {
