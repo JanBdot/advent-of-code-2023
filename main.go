@@ -8,7 +8,9 @@ import (
 	// gear_ratios "github.com/JanBdot/advent-of-code-2023/03_gear_ratios"
 	// scratchcards "github.com/JanBdot/advent-of-code-2023/04_scratchcards"
 	// seed "github.com/JanBdot/advent-of-code-2023/05_seed"
-	race "github.com/JanBdot/advent-of-code-2023/06_race"
+	// race "github.com/JanBdot/advent-of-code-2023/06_race"
+	// camelcards "github.com/JanBdot/advent-of-code-2023/07_camel_cards"
+	haunted_wasteland "github.com/JanBdot/advent-of-code-2023/08_haunted_wasteland"
 )
 
 func main() {
@@ -24,6 +26,10 @@ func main() {
 	// fmt.Printf("Day 04:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
 	// round1, round2 = seed.Seed()
 	// fmt.Printf("Day 05:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
-	round1, round2 = race.Race()
-	fmt.Printf("Day 06:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
+	// round1, round2 = race.Race()
+	// fmt.Printf("Day 06:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
+	// round1, round2 = camelcards.CamelCards()
+	// fmt.Printf("Day 07:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
+	round1, round2 = haunted_wasteland.HauntedWasteland()
+	fmt.Printf("Day 08:\n\tround 1: %v\n\tround 2: %v\n", round1, round2)
 }
