@@ -19,7 +19,6 @@ func parseInput(lines []string) (map[string][2]string, string) {
 	return moveMap, instructions
 }
 
-// Round1 processes the input for round 1
 func Round1(input []byte) int {
 	lines := strings.Split(strings.TrimSpace(string(input)), "\n\n")
 	moveMap, instructions := parseInput(lines)
@@ -44,7 +43,6 @@ func Round1(input []byte) int {
 	return steps
 }
 
-// Round2 processes the input for round 2
 func Round2() int {
 	// input, err := readInput()
 	// if err != nil {
@@ -56,7 +54,6 @@ func Round2() int {
 	return 0
 }
 
-// HauntedWasteland is the main function for this package
 func HauntedWasteland() (int, int) {
 	input, err := os.ReadFile("08_haunted_wasteland/input")
 	if err != nil {
